@@ -6,6 +6,7 @@ import {
   CardActionArea,
   CardActions,
   CardMedia,
+  CircularProgress,
   Grid,
   Rating,
   Typography,
@@ -45,11 +46,11 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            mt: "150",
+            mt: "250px",
             height: "80vh",
           }}
         >
-          <Typography>Loading...</Typography>
+          <CircularProgress />
         </Box>
       ) : (
         <Box
