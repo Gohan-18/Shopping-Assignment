@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Cart from './components/Cart';
 import SingleProduct from './components/SIngleProduct';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
 
@@ -16,7 +18,9 @@ function App() {
   ))
 
   return (
-    <RouterProvider router={router} />
+    <Provider store={store} >
+      <RouterProvider router={router} />
+    </Provider>
   )
 }
 
