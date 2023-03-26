@@ -25,13 +25,31 @@ const Cart = () => {
     dispatch(addTOCart({ product, quantity }));
   }
 
-  function decreaseItem ({product}) {
-    dispatch(removeFromCart({product}))
+  function decreaseItem({ product }) {
+    dispatch(removeFromCart({ product }));
   }
 
   return (
     <>
       <Container maxWidth="md" sx={{ my: "80px" }}>
+        {/* <Box sx={{}} > */}
+        <Typography
+          sx={{
+            fontSize: {
+              xs: "20px",
+              sm: "40px",
+            },
+            fontWeight: 600,
+            color: "#6c757d",
+            width: "100%",
+            textAlign: "center",
+            py: "30px",
+            borderBottom: "4px solid #6c757d",
+          }}
+        >
+          CART
+        </Typography>
+        {/* </Box> */}
         <Box sx={{ width: "100%", py: "20px" }}>
           {cartItems.map((item) => {
             const { product, quantity } = item;
@@ -65,7 +83,17 @@ const Cart = () => {
                   />
                 </Box>
                 <Box>
-                  <Typography sx={{ fontSize: "20px", fontWeight: 500 }}>
+                  <Typography
+                    sx={{
+                      fontSize: "20px",
+                      fontWeight: 500,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: "2",
+                      WebkitBoxOrient: "vertical",
+                    }}
+                  >
                     {product.title}{" "}
                   </Typography>
                   <Rating
@@ -85,7 +113,7 @@ const Cart = () => {
                       gap: 1,
                     }}
                   >
-                    <IconButton onClick={() => decreaseItem({product})}>
+                    <IconButton onClick={() => decreaseItem({ product })}>
                       <RemoveRoundedIcon sx={{ fontSize: "20px" }} />
                     </IconButton>
                     <Typography sx={{ color: "#6c757d", fontWeight: "400" }}>
@@ -97,7 +125,10 @@ const Cart = () => {
                       <AddRoundedIcon sx={{ fontSize: "20px" }} />
                     </IconButton>
                   </Box>
-                  <Typography>
+                  <Typography sx={{fontSize: {
+                    xs: '16px',
+                    sm: '20px'
+                  }}} >
                     Total : ${getSubTotal([{ product, quantity }]).toFixed(2)}
                   </Typography>
                 </Box>
@@ -114,12 +145,14 @@ const Cart = () => {
               md: "60px",
             },
             py: "40px",
-            display: 'flex',
-            alignItems: 'center', 
-            justifyContent: 'space-between'
-        }}
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
         >
-          <Typography sx={{fontSize: '25px', fontWeight: 600}} >Subtotal</Typography>
+          <Typography sx={{ fontSize: "25px", fontWeight: 600 }}>
+            Subtotal
+          </Typography>
           <Typography>${subTotal} </Typography>
         </Card>
       </Container>

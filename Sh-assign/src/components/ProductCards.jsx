@@ -62,78 +62,24 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
             py: "40px",
           }}
         >
-          <Grid container spacing={3}>
-            {filteredProducts?.map(
-              ({ id, title, image, description, category, rating, price }) => {
-                return (
-                  <Grid item key={id} xs={12} sm={6} lg={3}>
-                    <Card>
-                      <CardActionArea
-                        onClick={() =>
-                          goToProduct({
-                            id,
-                            title,
-                            image,
-                            description,
-                            category,
-                            rating,
-                            price,
-                          })
-                        }
-                        sx={{ padding: theme.spacing(2) }}
-                      >
-                        {/* <Box > */}
-                        <CardMedia
-                          component="img"
-                          image={image}
-                          alt={title}
-                          sx={{
-                            alignSelf: "center",
-                            width: theme.spacing(30),
-                            height: theme.spacing(30),
-                            objectFit: "contain",
-                            py: theme.spacing(3),
-                          }}
-                        />
-                        <Typography
-                          sx={{
-                            fontSize: theme.spacing(3),
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            display: "-webkit-box",
-                            WebkitLineClamp: "1",
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
-                          {title}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            pt: theme.spacing(1),
-                            fontSize: theme.spacing(2),
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            display: "-webkit-box",
-                            WebkitLineClamp: "2",
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
-                          {description}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            pt: theme.spacing(1),
-                            fontSize: theme.spacing(3),
-                          }}
-                        >
-                          $ {price}
-                        </Typography>
-                        {/* </Box> */}
-                      </CardActionArea>
-                      <CardActions>
-                        <Button
+          {filteredProducts.length ? (
+            <Grid container spacing={3}>
+              {filteredProducts?.map(
+                ({
+                  id,
+                  title,
+                  image,
+                  description,
+                  category,
+                  rating,
+                  price,
+                }) => {
+                  return (
+                    <Grid item key={id} xs={12} sm={6} lg={3}>
+                      <Card>
+                        <CardActionArea
                           onClick={() =>
-                            handleCartItems({
+                            goToProduct({
                               id,
                               title,
                               image,
@@ -143,18 +89,93 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
                               price,
                             })
                           }
-                          variant="contained"
-                          sx={{ width: "100%" }}
+                          sx={{ padding: theme.spacing(2) }}
                         >
-                          Add to cart
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              }
-            )}
-          </Grid>
+                          {/* <Box > */}
+                          <CardMedia
+                            component="img"
+                            image={image}
+                            alt={title}
+                            sx={{
+                              alignSelf: "center",
+                              width: theme.spacing(30),
+                              height: theme.spacing(30),
+                              objectFit: "contain",
+                              py: theme.spacing(3),
+                            }}
+                          />
+                          <Typography
+                            sx={{
+                              fontSize: theme.spacing(3),
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              display: "-webkit-box",
+                              WebkitLineClamp: "1",
+                              WebkitBoxOrient: "vertical",
+                            }}
+                          >
+                            {title}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              pt: theme.spacing(1),
+                              fontSize: theme.spacing(2),
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              display: "-webkit-box",
+                              WebkitLineClamp: "2",
+                              WebkitBoxOrient: "vertical",
+                            }}
+                          >
+                            {description}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              pt: theme.spacing(1),
+                              fontSize: theme.spacing(3),
+                            }}
+                          >
+                            $ {price}
+                          </Typography>
+                          {/* </Box> */}
+                        </CardActionArea>
+                        <CardActions>
+                          <Button
+                            onClick={() =>
+                              handleCartItems({
+                                id,
+                                title,
+                                image,
+                                description,
+                                category,
+                                rating,
+                                price,
+                              })
+                            }
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                          >
+                            Add to cart
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+          ) : (
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: "20px",
+                  sm: "40px",
+                },
+                fontWeight: 600,
+                color: "#6c757d",
+              }}
+            >{`NO PRODUCT FOUND :(`}</Typography>
+          )}
         </Box>
       )}
     </>
