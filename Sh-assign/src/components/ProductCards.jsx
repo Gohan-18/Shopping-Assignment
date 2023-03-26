@@ -63,7 +63,7 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
           }}
         >
           <Grid container spacing={3}>
-            {filteredProducts.map(
+            {filteredProducts?.map(
               ({ id, title, image, description, category, rating, price }) => {
                 return (
                   <Grid item key={id} xs={12} sm={6} lg={3}>
