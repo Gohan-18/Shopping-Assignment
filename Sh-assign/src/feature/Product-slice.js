@@ -43,9 +43,12 @@ const productSlice = createSlice({
             // console.log(action.payload)
             state.searchedTerm = action.payload;
             console.log(state.searchedTerm)
+        },
+        viewSingleProduct(state, action) {
+            state.singleProduct = action.payload
         }
     }
 })
 
-export const { currentSearchedTerm } = productSlice.actions;
+export const { currentSearchedTerm, viewSingleProduct } = productSlice.actions;
 export default productSlice.reducer;

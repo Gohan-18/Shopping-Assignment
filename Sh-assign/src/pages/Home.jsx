@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Home = () => {
 
     const dispatch = useDispatch();
-    const {allProducts, loading, searchedTerm} = useSelector((state) => state.products)
+    const {allProducts, loading, searchedTerm} = useSelector((state) => state?.products)
     // console.log(allProducts)
 
     // useEffect(() => {

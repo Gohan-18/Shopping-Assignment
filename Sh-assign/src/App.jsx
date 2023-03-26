@@ -3,9 +3,10 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Cart from './components/Cart';
-import SingleProduct from './components/SIngleProduct';
+// import SingleProduct from './components/SIngleProduct';
 import { Provider } from 'react-redux';
 import store from './store';
+import Product from './components/Product';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
     <Route path='/' element={<Layout/>} >
       <Route index element={<Home/>} />
       <Route path='/cart' element={<Cart/>} />
-      <Route path='/item' element={<SingleProduct/>} />
+      <Route path='/product/:productid' element={<Product/>} />
     </Route>
   ))
 
