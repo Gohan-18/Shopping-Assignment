@@ -1,8 +1,15 @@
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 const ProductCards = () => {
   return (
-    <div>ProductCards</div>
+    <>
+    <Box sx={{mt: '80px'}} >
+        <Typography>
+        ProductCards
+        </Typography>
+    </Box>
+    </>
   )
 }
 
