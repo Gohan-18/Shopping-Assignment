@@ -1,11 +1,19 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button, CardMedia, Container, Rating, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addTOCart } from "../feature/Cart-slice";
 
 const Product = () => {
   const { singleProduct } = useSelector((state) => state?.products);
   const theme = useTheme();
+  const dispatch = useDispatch();
+
+  function handleCartItems(product) {
+    // console.log(singleProduct)
+    dispatch(addTOCart({ product, quantity: 1 }));
+  }
+
   return (
     <>
     {/* {singleProduct.rating} */}
@@ -56,7 +64,7 @@ const Product = () => {
           <Typography sx={{pt:'20px'}} >{singleProduct.description}</Typography>
           <Typography sx={{pt:'20px',color: '#6c757d' ,fontWeight: '400'}} >Category : <Typography variant='span' sx={{fontWeight: '500', px: '10px', color: '#343a40'}}>{singleProduct.category.toUpperCase()}</Typography></Typography>
           <Typography variant='span' sx={{color: '#6c757d' ,fontWeight: '400'}} >Availability : {singleProduct.rating.count > 0 ? <Typography variant='span' color='#006400' sx={{fontWeight: '500', px: '10px'}} >- In Stock -</Typography> : <Typography variant='span' sx={{fontWeight: '500', px: '10px'}} color='error'>- Out Of Stock -</Typography>}</Typography> 
-          <Button variant="contained" sx={{mt: '20px'}} >Add to cart</Button>
+          <Button onClick={() => handleCartItems(singleProduct)} variant="contained" sx={{mt: '20px'}} >Add to cart</Button>
         </Box>
       </Container>
     </>

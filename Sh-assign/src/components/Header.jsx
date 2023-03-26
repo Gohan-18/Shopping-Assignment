@@ -1,4 +1,4 @@
-import { IconButton, TextField, Typography } from "@mui/material";
+import { Badge, IconButton, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -8,6 +8,7 @@ import { currentSearchedTerm } from "../feature/Product-slice";
 
 const Header = () => {
   const { searchedTerm } = useSelector((state) => state.products);
+  const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,10 +27,10 @@ const Header = () => {
           alignItems: "center",
           justifyContent: "center",
           px: {
-            xs: '10px',
-            md: '30px'
+            xs: "10px",
+            md: "30px",
           },
-        //   gap: 5,
+          //   gap: 5,
           position: "fixed",
           top: 0,
           right: 0,
@@ -62,9 +63,9 @@ const Header = () => {
             alignItems: "center",
             justifyContent: "center",
             mx: {
-                xs: '5px',
-                md: '20px'
-            }
+              xs: "5px",
+              md: "20px",
+            },
           }}
         >
           <input
@@ -89,7 +90,9 @@ const Header = () => {
             onClick={() => navigate("/cart")}
             sx={{ padding: "15px" }}
           >
-            <ShoppingCartOutlinedIcon sx={{ fill: "#f4f4f4" }} />
+            <Badge badgeContent={cartItems?.length} color="error">
+              <ShoppingCartOutlinedIcon sx={{ fill: "#f4f4f4" }} />
+            </Badge>
           </IconButton>
         </Box>
       </Box>

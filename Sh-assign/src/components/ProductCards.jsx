@@ -13,10 +13,10 @@ import {
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addTOCart } from "../feature/Cart-slice";
 import { viewSingleProduct } from "../feature/Product-slice";
 
 const ProductCards = ({ allProducts, loading, searchedTerm }) => {
-
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,14 +28,14 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
           prod.title.toLowerCase().includes(searchedTerm.toLowerCase())
         );
 
-    function handleCartItems({ id, title, image, description, category, rating, price }) {
-        dispatch()
-    }
+  function handleCartItems(product) {
+    dispatch(addTOCart({ product, quantity: 1 }));
+  }
 
-    function goToProduct(product) {
-        dispatch(viewSingleProduct(product));
-        navigate(`/product/${product.id}`)
-    }
+  function goToProduct(product) {
+    dispatch(viewSingleProduct(product));
+    navigate(`/product/${product.id}`);
+  }
 
   return (
     <>
@@ -67,7 +67,20 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
                 return (
                   <Grid item key={id} xs={12} sm={6} lg={3}>
                     <Card>
-                      <CardActionArea onClick={()=> goToProduct({ id, title, image, description, category, rating, price })} sx={{ padding: theme.spacing(2) }}>
+                      <CardActionArea
+                        onClick={() =>
+                          goToProduct({
+                            id,
+                            title,
+                            image,
+                            description,
+                            category,
+                            rating,
+                            price,
+                          })
+                        }
+                        sx={{ padding: theme.spacing(2) }}
+                      >
                         {/* <Box > */}
                         <CardMedia
                           component="img"
@@ -117,7 +130,21 @@ const ProductCards = ({ allProducts, loading, searchedTerm }) => {
                         {/* </Box> */}
                       </CardActionArea>
                       <CardActions>
-                        <Button onClick={() => handleCartItems({ id, title, image, description, category, rating, price })} variant="contained" sx={{ width: "100%" }}>
+                        <Button
+                          onClick={() =>
+                            handleCartItems({
+                              id,
+                              title,
+                              image,
+                              description,
+                              category,
+                              rating,
+                              price,
+                            })
+                          }
+                          variant="contained"
+                          sx={{ width: "100%" }}
+                        >
                           Add to cart
                         </Button>
                       </CardActions>
